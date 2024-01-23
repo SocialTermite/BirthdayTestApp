@@ -10,7 +10,7 @@ import Foundation
 
 class UserDefaultStorage: Storage {
     private let childKey = "child_key"
-    private let userDefaults = UserDefaults()
+    private let userDefaults = UserDefaults.standard
     
     private var child: Child?
     
@@ -26,13 +26,14 @@ class UserDefaultStorage: Storage {
     }
     
     func retrieveChild() -> Child? {
-        if let child {
-            return child
-        }
-        guard let storedData = UserDefaults.standard.data(forKey: childKey),
+        guard let storedData = userDefaults.data(forKey: childKey),
               let loadedChild = try? JSONDecoder().decode(Child.self, from: storedData) else {
             return nil
         }
         return loadedChild
+    }
+    
+    func clearAll() {
+        userDefaults.removeObject(forKey: childKey)
     }
 }

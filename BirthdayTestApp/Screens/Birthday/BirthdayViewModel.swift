@@ -5,7 +5,7 @@
 //  Created by Konstantin Bondar on 19.01.2024.
 //
 
-import Foundation
+import UIKit
 
 // better to create a protocol but for now it's ok to use direct class.
 class BirthdayViewModel {
@@ -37,7 +37,7 @@ class BirthdayViewModel {
     var dateRepresentation: (item: String, count: Int) {
         let currentDate = Date()
         let calendar = Calendar.current
-    
+        
         let difference = calendar.dateComponents([.year, .month], from: child.birthday, to: currentDate)
         if let years = difference.year, let months = difference.month {
             if years > 0 {

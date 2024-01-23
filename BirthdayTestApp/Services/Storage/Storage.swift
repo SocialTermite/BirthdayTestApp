@@ -10,4 +10,5 @@ import Foundation
 protocol Storage {
     func store(child: Child)
     func retrieveChild() -> Child?
+    func clearAll()
 }

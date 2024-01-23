@@ -56,6 +56,17 @@ enum Theme: Int {
         }
     }
     
+    var fullPortraitPlaceholderImage: UIImage {
+        switch self {
+        case .blue:
+            return .fullPlaceholderImageBlue
+        case .yellow:
+            return .fullPlaceholderImageYellow
+        case .green:
+            return .fullPlaceholderImageGreen
+        }
+    }
+    
     var foregroundImage: UIImage {
         switch self {
         case .blue:

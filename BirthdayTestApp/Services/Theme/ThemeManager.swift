@@ -14,7 +14,7 @@ protocol ThemeObserver: AnyObject, Hashable {
 class ThemeManager {
     static let shared = ThemeManager()
     
-    private(set) var theme: Theme = .init(rawValue: Int.random(in: 0..<3)) ?? .blue {
+    private(set) var theme: Theme = ThemeManager.randomTheme() {
         didSet {
             guard theme != oldValue else { return }
             subscribers.forEach {
@@ -22,6 +22,7 @@ class ThemeManager {
             }
         }
     }
+    
     
     private var subscribers: Set<AnyHashable> = []
     
@@ -37,6 +38,12 @@ class ThemeManager {
         self.theme = theme
     }
     
-    private init() { }
+    func changeThemeRandomly() {
+        self.theme = ThemeManager.randomTheme()
+    }
+    
+    private static func randomTheme() -> Theme {
+        .init(rawValue: Int.random(in: 0..<3)) ?? .blue
+    }
 }
 

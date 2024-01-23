@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Child: Codable {
+struct Child: Codable, Equatable {
     let name: String
     let birthday: Date
     private let imageData: Data?

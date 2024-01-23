@@ -14,6 +14,7 @@ final class BirthdayViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var numberImageView: UIImageView!
     @IBOutlet weak var portraitView: PortraitView!
+    @IBOutlet weak var shareButton: UIButton!
     
     private lazy var imagePicker = ImagePicker(presentingViewController: self, delegate: self)
     
@@ -24,11 +25,14 @@ final class BirthdayViewController: UIViewController {
         
         portraitView.translatesAutoresizingMaskIntoConstraints = false
         portraitView.delegate = self
+        
         updateView(with: ThemeManager.shared.theme)
         
         setupBindings()
         
         viewModel?.loadChild()
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func setupBindings() {
@@ -46,6 +50,28 @@ final class BirthdayViewController: UIViewController {
     private func updateView(with theme: Theme) {
         view.backgroundColor = theme.light
         foregroundImageView.image = theme.foregroundImage
+    }
+    
+    
+    @IBAction func backAction(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func shareAction(_ sender: Any) {
+        shareButton.isHidden = true
+
+        let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
+        let screenshot = renderer.image { _ in
+            view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        }
+
+        let activityViewController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
+
+        if let popoverController = activityViewController.popoverPresentationController {
+            popoverController.barButtonItem = navigationItem.rightBarButtonItem // or any other bar button item
+        }
+        present(activityViewController, animated: true, completion: nil)
+        shareButton.isHidden = false
     }
 }
 

@@ -1,5 +1,17 @@
 {
   "sourceLanguage" : "en",
-  "strings" : {},
+  "strings" : {
+    "BirthdayTitle" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today %@ dad"
+          }
+        }
+      }
+    }
+  },
   "version" : "1.0"
 }

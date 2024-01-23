@@ -53,8 +53,8 @@ final class PortraitView: UIView {
         NSLayoutConstraint.activate([
             placeholderImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             placeholderImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            placeholderImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5), // Set width as 50% of the parent view's width
-            placeholderImageView.heightAnchor.constraint(equalTo: placeholderImageView.widthAnchor) // Maintain aspect ratio
+            placeholderImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5),
+            placeholderImageView.heightAnchor.constraint(equalTo: placeholderImageView.widthAnchor) 
         ])
     }
     
